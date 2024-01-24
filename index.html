@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+</head>
+<body ng-app="MovieSearch" ng-controller="MovieController">
+    <div class="container">
+        
+        <form   ng-submit="filterMoviesWithDate()">
+            <div class="searchBox">
+        <div>
+            <label for=""><p style="font-size: 18px; font-weight: 600px;margin-top: 13px;">From</p></label>
+        </div>
+        <div>
+            <input type="date" name="fromDate" ng-model="inputSearch.fromDate">
+        </div>
+        <div>
+            <label for=""><p style="font-size: 15px; font-weight: 600px;margin-top: 13px;" >To</p></label>
+        </div>
+        <div>
+            <input type="date" class="toDate" ng-model="inputSearch.toDate">
+        </div>
+        <div>
+            <button style=" font-size: 15px;">Search</button>
+        </div>
+        </div>
+    </form>
+
+    <form >
+        <div class="searchBox2"  >                                                               
+            <input type="text"  class="searchInput"  id="inputSearchMovieName" placeholder="Enter movie name" >
+            <button ng-click="filterMovieWithDay()">Search</button>
+        </div>
+    </form>
+    
+
+    <div class="movie-container" >
+        <div class="movie" ng-repeat="movie in filteredMovies">
+                <a href="" style="text-decoration: none;" ng-click="playTrailer(movie)">
+                <button class="movie-click" (click)="playTrailer(movie)"> 
+             <div class="movie-image">
+                <img src="{{movie.image}}" alt="" class="image">
+            </div>
+             <div class="rating">
+                <img src="star.jpeg" alt="" class="star-symbol">
+                <p>{{movie.rating}}</p>
+                <pre class="imdb" style="border: none;background-color:none;">  IMBb</pre>
+            </div> 
+            <div class="movieName">
+                <p>{{movie.name}}</p>
+            </div>
+            <div class="movie-date">
+                <p>{{movie.date}}</p>
+            </div>
+        </a>
+  
+    
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+    
+          
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body" >
+                    <form >
+                        <iframe ng-src="{{trustedUrl}}" frameborder="0"  class="trailer" allowfullscreen></ifram>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+
+
+
+</body>
+</html>
