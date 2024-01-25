@@ -64,6 +64,7 @@ var toDate=new Date($scope.inputSearch.toDate)
             $scope.filteredMovies.unshift(movie);
            }
         }
+    $scope.inputSearch={};
 }
 
 
@@ -78,6 +79,7 @@ $scope.filterMovieWithDay=function(){
        $scope.filteredMovies.unshift(movie);
      }
     }
+    document.getElementById('inputSearchMovieName').value=null;
 }
 
 function convertDateStringToDate(dateString) {
